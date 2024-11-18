@@ -5,9 +5,12 @@ import './app.css';
 // Componentes gerais
 import Footer from './component/Footer'; 
 import Nav from './component/Nav'; 
+import Carrinho from './pages/Carrinho'; 
+import Reserva from './pages/Reserva'; 
 
 import Home from './pages/Home'; 
 import Login from './pages/LoginRegister'; 
+import Detalhes from './pages/detalhes'; 
 
 
 
@@ -29,6 +32,9 @@ function MainApp() {
             {/* Rotas gerais */}
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/carrinho" element={<Carrinho />} />
+            <Route path="/reserva" element={<Reserva />} />
+            <Route path="/detalhes" element={<Detalhes />} />
           
            
 

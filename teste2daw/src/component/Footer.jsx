@@ -6,7 +6,7 @@ const Footer = () => {
     <section className="footer">
       <div className="footer-box">
         <a href="#" className="logo">
-          <h1 style={{color: 'green' }}>CROCS<sup style={{ fontSize: '0.5rem', color: 'green' }}>TM</sup></h1>
+          <h1 style={{color: 'green' }}>DONDZISSA<sup style={{ fontSize: '0.5rem', color: 'green' }}>TM</sup></h1>
         </a>
         <div className="social">
           <div className="media">
@@ -26,7 +26,7 @@ const Footer = () => {
 
           <div className="contacts">
             <h3>Contacts</h3>
-            <p><b  style={{  color: 'white' }}>Email</b>: suporte@crocsmz.co.mz</p> <br />
+            <p><b  style={{  color: 'white' }}>Email</b>: suporte@dondzissa.co.mz</p> <br />
             <p><b  style={{  color: 'white' }}>Contacto do suporte</b>: +258 821234567</p>
             <p>Seg-Sex: 7:00H - 21:00H</p>
             <p>Sab-Dom: 8:15H - 20:00H</p>

@@ -1,5 +1,6 @@
 import React from "react";
-
+import { Link} from "react-router-dom"
+;
 import "../assets/style/home.css";
 
 
@@ -18,10 +19,10 @@ const Home = () => {
           {/* Section 1 */}
           <div className="Container">
             <div className="home-container">
-              <h2>Crocs Mozambique</h2>
+              <h2>dondzissa kaya</h2>
               <p>
-                Novos modelos, com os últimos crocs. <br />
-                Mais confortáveis do que nunca
+               Conheca os ultimos lancamentos <br />
+                dos best-sellers
               </p>
               <button id="shop_now">Comprar</button>
             </div>
@@ -48,6 +49,23 @@ const Home = () => {
               <p>Pagamento seguro</p>
             </div>
           </div>
+
+
+          
+        <div  className="shop-container">
+            <Link to="/detalhes">
+              <div className="box">
+                  <img src="teste3-removebg-preview.png" alt=""/>
+                  <h2>Nike Therma</h2>
+                  <span>70.88$</span>
+                  <button>Sandals</button>
+              </div>
+            </Link>
+        
+          
+
+
+        </div>
 
          
        
