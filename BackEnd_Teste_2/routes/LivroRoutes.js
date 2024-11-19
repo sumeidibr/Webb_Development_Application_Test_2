@@ -17,5 +17,7 @@ livroRouter.put('/:id', livroController.updateLivro);
 
 // Rota para deletar um livro específico por ID
 livroRouter.delete('/:id', livroController.deleteLivro);
+livroRouter.put('/desativar/:id', livroController.indisponibilizarLivro);
+livroRouter.put('/ativar/:id', livroController.disponibilizarLivro);
 
 export default livroRouter;

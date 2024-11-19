@@ -28,5 +28,10 @@ export default (sequelize, DataTypes) => {
         key: 'categoria_id',
       },
     },
+    status: {
+      type: DataTypes.STRING,
+      allowNull: false,  // O status não pode ser nulo
+      defaultValue: 'ativo', // Valor padrão "ativo"
+    },
   }, { timestamps: false });
 };

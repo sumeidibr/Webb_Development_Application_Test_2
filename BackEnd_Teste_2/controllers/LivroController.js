@@ -63,10 +63,49 @@ const deleteLivro = async (req, res) => {
   }
 };
 
+// Método para disponibilizar o livro (alterar o status para "ativo")
+const disponibilizarLivro = async (req, res) => {
+  try {
+    const livro = await Livro.findByPk(req.params.id);
+
+    if (livro) {
+      livro.status = 'ativo'; // Alterando o status para 'ativo'
+      await livro.save(); // Salvando a alteração no banco de dados
+
+      res.status(200).json({ message: 'Livro disponibilizado com sucesso!', livro });
+    } else {
+      res.status(404).json({ message: 'Livro não encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Método para indisponibilizar o livro (alterar o status para "inativo")
+const indisponibilizarLivro = async (req, res) => {
+  try {
+    const livro = await Livro.findByPk(req.params.id);
+
+    if (livro) {
+      livro.status = 'inativo'; // Alterando o status para 'inativo'
+      await livro.save(); // Salvando a alteração no banco de dados
+
+      res.status(200).json({ message: 'Livro indisponibilizado com sucesso!', livro });
+    } else {
+      res.status(404).json({ message: 'Livro não encontrado' });
+    }
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 export default {
   createLivro,
   getAllLivros,
   getLivroById,
   updateLivro,
-  deleteLivro
+  deleteLivro,
+  disponibilizarLivro,
+  indisponibilizarLivro
 };
