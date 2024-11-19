@@ -54,7 +54,7 @@ body button{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url('../img/background_1.avif');
+  background-image: url('../assets/img/transferir.jpg');
   background-position: 70%;
   background-size: cover;
 }

@@ -34,6 +34,7 @@ const detalhes = () => {
                 <div className="lista-tamanhos">
                 <Link to="/carrinho"><button>Adicionar ao carrinho</button></Link>
                 <Link to="/reserva"><button>Efetuar reserva</button></Link>
+                <Link to="/favoritos"><button>Favoritar</button></Link>
                     </div>
           
           

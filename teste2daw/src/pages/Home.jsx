@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "../assets/style/home.css"; 
 
+
 const Home = () => {
   // Estado para armazenar a categoria selecionada
   const [selectedCategory, setSelectedCategory] = useState("");
