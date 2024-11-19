@@ -6,7 +6,7 @@
     color: black;
 }
 
-.content-reserva {
+.content-favoritos {
   flex: 1; /* Faz com que o conteúdo preencha o espaço restante */
   display: flex;
   flex-direction: column;
@@ -14,27 +14,31 @@
   background-color: rgb(244, 244, 244);
 }
 
-.containere {
+.containeree {
   flex-direction: row;
   height: 90vh;
 display: flex;
   width: 80vw;
   border-radius: 20px;
   gap: 10px;
+
 }
 
-.containere .producteList {
+.containeree .producteeList {
     list-style: none;
     padding: 0;
   }
-  
-  .producteList {
+
+
+  .producteeList {
     width: 200px;
     height: 200px;
   }
 
   
-  .producteDetails {
+  
+  
+  .producteeDetails {
     margin-top: 20px;
     flex-grow: 1;
     display: flex;
@@ -54,7 +58,7 @@ display: flex;
   
   
   
-  .removeeButton{
+  .removeeeButton{
     background-color: #e6071df0;
     color: rgb(255, 255, 255);
   }

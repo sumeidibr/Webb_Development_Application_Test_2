@@ -38,7 +38,7 @@ function Carrinho() {
                           -
                         </button>
                         <button
-                        
+                        className='removeButton'
                         >
                           Remover
                         </button>

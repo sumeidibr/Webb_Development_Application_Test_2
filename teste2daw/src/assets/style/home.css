@@ -25,6 +25,11 @@ html, body {
   background-color: white;
 }
 
+body button{
+  color: white;
+  color: black;
+}
+
 .content {
   flex: 1; /* Faz com que o conteúdo preencha o espaço restante */
   display: flex;
@@ -290,3 +295,14 @@ html, body {
   font-weight: 800;
 */
 
+.category-filter {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.category-select {
+  padding: 10px;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}

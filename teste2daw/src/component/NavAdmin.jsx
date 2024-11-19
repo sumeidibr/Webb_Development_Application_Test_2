@@ -30,21 +30,19 @@ const Navbar = () => {
           </label>
 
           <li>
-            <Link to="/" className="active">Home</Link>
+            <Link to="/admin" className="active">Home</Link>
           </li>
 
           <li>
-            <Link to="/reserva" className="desktop-item">Reservas</Link>          
+            <Link to="/admin/reservados" className="desktop-item">Reservados</Link>          
           </li>
 
           <li>
-          <Link to="/carrinho" className="desktop-item">Carrinho</Link>
+          <Link to="/admin/livros" className="desktop-item">Livros</Link>
           </li>
-          <li>
-          <Link to="/favoritos" className="desktop-item">Favoritos</Link>
-          </li>
+       
 
-          <li><Link to="/sobre-nos">Sobre nos</Link></li>
+         
 
           <div className="Componentes">
             <Link to="#"><input type="button" className="btn_carrinho" /></Link>

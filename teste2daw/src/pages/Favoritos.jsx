@@ -1,21 +1,21 @@
 import React from "react";
 
-import "../assets/style/reserva.css";
+import "../assets/style/favoritos.css";
 
 
 
 
 
-const Reserva = () => {
+const Favoritos = () => {
  
  
 
   return (
-    <div className="content-reserva">
-       <div className="containere">
-           <div className="producteList">
+    <div className="content-favoritos">
+       <div className="containeree">
+           <div className="producteeList">
            
-                    <div className="producteDetails">
+                    <div className="producteeDetails">
                       <div className='productDetails_1'>
                       <img src="" alt="" />
                         <p>Preço: </p>
@@ -26,16 +26,15 @@ const Reserva = () => {
                     <div className="buttons">
                       
                       <button
-                      className='removeeButton'
+                      className='removeeeButton'
                       >
-                       Cancelar reserva
-                      </button>
-                      
+                      Remover favorito
+                      </button>                      
                     </div>
             </div>
-           <div className="producteList">
+           <div className="producteeList">
            
-                    <div className="producteDetails">
+                    <div className="producteeDetails">
                       <div className='productDetails_1'>
                       <img src="" alt="" />
                         <p>Preço: </p>
@@ -46,11 +45,10 @@ const Reserva = () => {
                     <div className="buttons">
                       
                       <button
-                      className='removeeButton'
+                      className='removeeeButton'
                       >
-                       Cancelar reserva
-                      </button>
-                      
+                      Remover favorito
+                      </button>                      
                     </div>
             </div>
        </div>
@@ -59,5 +57,5 @@ const Reserva = () => {
   );
 };
 
-export default Reserva;
+export default Favoritos;
 ;

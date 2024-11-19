@@ -9,7 +9,7 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
-    background-color: rgb(214, 54, 54);
+    background-color: rgb(255, 255, 255);
 }
 
 .container-detalhes-produto {
@@ -73,6 +73,10 @@ html, body {
     width: 60%;
     margin: auto;
     gap: 10px;
+}
+
+.lista-tamanhos button{
+    color: white;
 }
 .informacao-tamanho p{
     color: black;

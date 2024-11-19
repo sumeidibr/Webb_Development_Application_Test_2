@@ -1,0 +1,37 @@
+.detalhes-reserva-container {
+    padding: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .detalhes-reserva-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .detalhes-reserva p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-bottom: 10px;
+  }
+  
+  .detalhes-reserva p strong {
+    font-weight: bold;
+  }
+  
+  .btn-voltar {
+    display: block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .btn-voltar:hover {
+    background-color: #0056b3;
+  }
+  

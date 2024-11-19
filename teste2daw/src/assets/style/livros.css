@@ -1,0 +1,92 @@
+.livros-container {
+    font-family: Arial, sans-serif;
+    padding: 20px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .livros-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+  
+  .livros-table th, .livros-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  .livros-table th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
+  
+  .livros-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .livros-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .btn-update, .btn-delete {
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  .btn-update {
+    background-color: #ffc107;
+    color: #000;
+  }
+  
+  .btn-delete {
+    background-color: #dc3545;
+    color: #fff;
+  }
+  
+  .btn-update:hover {
+    background-color: #e0a800;
+  }
+  
+  .btn-delete:hover {
+    background-color: #c82333;
+  }
+  
+
+
+  .filtro-categoria {
+    margin-bottom: 20px;
+  }
+  
+  .filtro-categoria label {
+    font-size: 16px;
+    margin-right: 10px;
+  }
+  
+  .filtro-categoria select {
+    padding: 5px;
+    font-size: 14px;
+  }
+  
+  
+  
+ 
+  button {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
