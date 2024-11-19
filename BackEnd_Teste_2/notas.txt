@@ -1,0 +1,2 @@
+
+npm i --save express sequelize cors mysql2 
