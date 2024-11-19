@@ -12,6 +12,7 @@ import Home from './pages/Home';
 import Login from './pages/LoginRegister'; 
 import Detalhes from './pages/detalhes'; 
 import Favoritos from './pages/Favoritos'; 
+import LoginPage from './pages/LoginPage'; 
 
 // Admin
 import AdminHome from './pages/HomeAdmin'; 
