@@ -1,6 +1,6 @@
 export default (sequelize, DataTypes) => {
-  return sequelize.define('User', {
-    user_id: {
+  return sequelize.define('Usuario', {
+    id_user: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
@@ -19,8 +19,8 @@ export default (sequelize, DataTypes) => {
       allowNull: false,
     },
     tipo_usuario: {
-      type: DataTypes.STRING,
+      type: DataTypes.ENUM('comum', 'admin'),
       allowNull: false,
     },
-  }, { timestamps: true });
+  }, { timestamps: false });
 };

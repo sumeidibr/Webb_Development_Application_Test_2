@@ -1,10 +1,12 @@
 import { Sequelize, DataTypes } from 'sequelize';
 import dbConfig from '../config/dbConfig.js';
-import userModel from './UserModel.js';
-import bookModel from './BookModel.js';
-import pedidoModel from './PedidoModel.js';
+import usuarioModel from './UsuarioModel.js';
+import livroModel from './LivroModel.js';
+import vendaModel from './VendaModel.js';
 import favoritoModel from './FavoritoModel.js';
 import categoriaModel from './CategoriaModel.js';
+import itemVendaModel from './ItemVenda.js';
+import reservaModel from './ReservaModel.js';
 
 const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
   host: dbConfig.HOST,
@@ -16,42 +18,16 @@ const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
 const db = {
   sequelize,
   Sequelize,
-  User: userModel(sequelize, DataTypes),
-  Book: bookModel(sequelize, DataTypes),
-  Pedido: pedidoModel(sequelize, DataTypes),
-  Favorito: favoritoModel(sequelize, DataTypes),
+  Usuario: usuarioModel(sequelize, DataTypes),
+  
+  Venda: vendaModel(sequelize, DataTypes),
+  Favoritos: favoritoModel(sequelize, DataTypes),
   Categoria: categoriaModel(sequelize, DataTypes),
+  Livro: livroModel(sequelize, DataTypes),
+  ItemVenda: itemVendaModel(sequelize, DataTypes),
+  Reservas: reservaModel(sequelize, DataTypes),
 };
 
-// Associações
-
-// Relacionamento muitos-para-muitos entre Usuário e Livro (via Favorito)
-db.User.belongsToMany(db.Book, { 
-  through: db.Favorito, 
-  foreignKey: 'usuario_id' 
-});
-db.Book.belongsToMany(db.User, { 
-  through: db.Favorito, 
-  foreignKey: 'livro_id' 
-});
-
-// Relacionamento um-para-muitos entre Usuario e Pedido
-db.User.hasMany(db.Pedido, { foreignKey: 'usuario_id' });
-db.Pedido.belongsTo(db.User, { foreignKey: 'usuario_id' });
-
-// Relacionamento muitos-para-muitos entre Pedido e Livro (via PedidoItem, por exemplo)
-db.Pedido.belongsToMany(db.Book, { 
-  through: 'PedidoItem', 
-  foreignKey: 'pedido_id' 
-});
-db.Book.belongsToMany(db.Pedido, { 
-  through: 'PedidoItem', 
-  foreignKey: 'livro_id' 
-});
-
-// Relacionamento um-para-muitos entre Categoria e Livro
-db.Categoria.hasMany(db.Book, { foreignKey: 'categoria_id' });
-db.Book.belongsTo(db.Categoria, { foreignKey: 'categoria_id' });
 
 // Função para autenticar e sincronizar com o banco de dados
 (async () => {

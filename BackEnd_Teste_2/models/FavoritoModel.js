@@ -1,13 +1,20 @@
 export default (sequelize, DataTypes) => {
-    return sequelize.define('Favorito', {
-      usuario_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+  return sequelize.define('Favoritos', {
+    id_user: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'Usuarios',
+        key: 'id_user',
       },
-      livro_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
+    },
+    id_livro: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      references: {
+        model: 'Livros',
+        key: 'id_livro',
       },
-    }, { timestamps: true });
-  };
-  
+    },
+  }, { timestamps: false });
+};

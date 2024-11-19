@@ -1,10 +1,15 @@
 import { Router } from 'express';
 import favoritoController from '../controllers/FavoritoController.js';
 
-const router = Router();
+const favoritoRouter = Router();
 
-router.post('/', favoritoController.addFavorito);
-router.get('/', favoritoController.getAllFavoritos);
-router.delete('/:id', favoritoController.deleteFavorito);
+// Rota para adicionar um favorito
+favoritoRouter.post('/', favoritoController.addFavorito);
 
-export default router;
+// Rota para obter todos os favoritos de um usuário específico
+favoritoRouter.get('/:userId', favoritoController.getFavoritosByUser);
+
+// Rota para remover um favorito de um usuário específico por livro
+favoritoRouter.delete('/:userId/:livroId', favoritoController.removeFavorito);
+
+export default favoritoRouter;

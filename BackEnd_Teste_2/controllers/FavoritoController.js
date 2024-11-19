@@ -1,31 +1,33 @@
 import db from '../models/index.js';
-const Favorito = db.Favorito;
+const Favoritos = db.Favoritos;
 
 const addFavorito = async (req, res) => {
   try {
-    const favorito = await Favorito.create(req.body);
+    const favorito = await Favoritos.create(req.body);
     res.status(201).json(favorito);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const getAllFavoritos = async (req, res) => {
+const getFavoritosByUser = async (req, res) => {
   try {
-    const favoritos = await Favorito.findAll();
+    const favoritos = await Favoritos.findAll({
+      where: { id_user: req.params.userId },
+    });
     res.status(200).json(favoritos);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 };
 
-const deleteFavorito = async (req, res) => {
+const removeFavorito = async (req, res) => {
   try {
-    const deleted = await Favorito.destroy({
-      where: { favorito_id: req.params.id },
+    const deleted = await Favoritos.destroy({
+      where: { id_user: req.params.userId, id_livro: req.params.livroId },
     });
     if (deleted) {
-      res.status(204).json({ message: 'Favorito deleted' });
+      res.status(204).json({ message: 'Favorito removed' });
     } else {
       res.status(404).json({ message: 'Favorito not found' });
     }
@@ -36,6 +38,6 @@ const deleteFavorito = async (req, res) => {
 
 export default {
   addFavorito,
-  getAllFavoritos,
-  deleteFavorito
+  getFavoritosByUser,
+  removeFavorito
 };

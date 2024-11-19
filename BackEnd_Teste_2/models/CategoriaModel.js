@@ -9,5 +9,5 @@ export default (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-  }, { timestamps: true });
+  }, { timestamps: false });
 };
