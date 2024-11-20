@@ -12,7 +12,7 @@ const Detalhes = () => {
   useEffect(() => {
     const fetchLivro = async () => {
       try {
-        const response = await fetch(`http://localhost:3005/api/books/${id}`);
+        const response = await fetch(`http://localhost:3000/api/books/${id}`);
         if (!response.ok) {
           throw new Error("Erro ao carregar os detalhes do livro");
         }
@@ -64,7 +64,7 @@ const Detalhes = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3005/api/favoritos", {
+      const response = await fetch("http://localhost:3000/api/favoritos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const Detalhes = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3005/api/favoritos/${userId}/${livro.id_livro}`,
+        `http://localhost:3000/api/favoritos/${userId}/${livro.id_livro}`,
         {
           method: "DELETE",
         }

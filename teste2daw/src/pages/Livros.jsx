@@ -11,7 +11,7 @@ const Livros = () => {
   useEffect(() => {
     const fetchLivros = async () => {
       try {
-        const response = await fetch('http://localhost:3005/api/books');
+        const response = await fetch('http://localhost:3000/api/books');
         if (!response.ok) {
           throw new Error('Erro ao carregar livros');
         }
@@ -24,7 +24,7 @@ const Livros = () => {
 
     const fetchCategorias = async () => {
       try {
-        const response = await fetch('http://localhost:3005/api/categorias');
+        const response = await fetch('http://localhost:3000/api/categorias');
         if (!response.ok) {
           throw new Error('Erro ao carregar categorias');
         }
