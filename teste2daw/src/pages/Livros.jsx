@@ -56,8 +56,8 @@ const Livros = () => {
   // Função para atualizar o status de um livro (disponibilizar ou indisponibilizar)
   const atualizarStatusLivro = async (id, status) => {
     const url = status === "ativo"
-      ? `http://localhost:3005/api/books/ativar/${id}`
-      : `http://localhost:3005/api/books/desativar/${id}`;
+      ? `http://localhost:3000/api/books/ativar/${id}`
+      : `http://localhost:3000/api/books/desativar/${id}`;
     
     try {
       console.log(`Fazendo requisição para ${url}`);
