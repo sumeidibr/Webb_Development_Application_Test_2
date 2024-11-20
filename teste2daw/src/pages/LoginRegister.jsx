@@ -35,7 +35,7 @@ const handleLogin = async (e) => {
   const loginData = { email, password };
 
   try {
-    const response = await fetch('http://localhost:3000/api/users/Entrar', {
+    const response = await fetch('http://localhost:3005/api/users/Entrar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginData),
@@ -91,7 +91,7 @@ const handleLogin = async (e) => {
     const registerData = { name, email, password };
 
     try {
-      const response = await fetch('http://localhost:3000/api/users', {
+      const response = await fetch('http://localhost:3005/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registerData),
@@ -120,7 +120,7 @@ const handleLogin = async (e) => {
       <div className="form">
         {/* Área de Login */}
         <div className="login_area">
-          <p style={{ fontSize: '1.4rem' }}>
+          <p style={{ fontSize: '1.4rem', color: 'white;' }}>
             <b>Login into your account</b>
           </p>
           <input

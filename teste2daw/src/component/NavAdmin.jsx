@@ -64,6 +64,20 @@ const Navbar = () => {
             <Link to="/admin/livros" className="desktop-item">Livros</Link>
           </li>
 
+          {localStorage.getItem('token') ? (
+            <button 
+              className="btn_logout" 
+              style={{ margin: '5px' }} 
+              onClick={handleLogout}
+            >
+              Logout
+            </button>
+          ) : (
+            <Link to="/login">
+              <input type="button" className="btn_login" value="Login" style={{ margin: '5px' }} />
+            </Link>
+          )}
+
           <div className="Componentes">
             <Link to="#"><input type="button" className="btn_carrinho" /></Link>
             <Link to="#"><input type="button" className="btn_favorito" /></Link>

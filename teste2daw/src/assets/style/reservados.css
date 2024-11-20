@@ -1,6 +1,7 @@
 .reservados-container {
     font-family: Arial, sans-serif;
-    padding: 20px;
+  width: 100vw;
+  margin-top: 30px;
   }
   
   h2 {

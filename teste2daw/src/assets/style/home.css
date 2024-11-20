@@ -22,7 +22,7 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: column; /* Permite que o conteúdo cresça na vertical */
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 body button{
@@ -31,7 +31,7 @@ body button{
 }
 
 .content {
-  flex: 1; /* Faz com que o conteúdo preencha o espaço restante */
+  flex: 1; 
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -54,7 +54,7 @@ body button{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url('../assets/img/transferir.jpg');
+  background-image: url('../img/transferir2.jpg');
   background-position: 70%;
   background-size: cover;
 }
@@ -65,7 +65,7 @@ body button{
 }
 
 .home-container h2 {
-  color: rgb(55, 114, 48);
+  color: rgb(255, 255, 255);
   margin: 3px;
   font-size: 45pt;
   letter-spacing: -0.05em;
@@ -77,7 +77,7 @@ body button{
 .home-container p {
   margin: 5px;
   line-height: 1.5;
-  color: rgb(7, 79, 37);
+  color: rgb(255, 255, 255);
   font-size: 1.3rem;
 }
 
@@ -139,85 +139,6 @@ body button{
 
 
 
-
-  /* SEÇÃO 3 */
-  .Container_2 {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 60vh;
-    width: 90vw;
-    justify-items: center;
-    margin: auto;
-    background-color: rgb(255, 255, 255);
-  }
-  
-  .Container-content   {
-    width: 500px;
-    height: 300px;
-    text-align: justify;
-    text-align: left;
-
-  }
-  .Container-content button{
-    color: white;
-  }
- 
-
-  .promotion h1{
-    font-size: 35pt;
-    font-weight: 900;
-    color: black;
-    letter-spacing: 0.05em; 
-  line-height: 90%;
-  text-transform: uppercase; 
-  }
-
-  .promotion{
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 4px;
-  }
-
-
-  .Container-content p {
-    font-style: italic;
-    color: rgb(93, 94, 95);
-    font-size: 15pt;
-    line-height: 1.6;
-  
-  }
-  .Container-content button {
-  margin-top: 30px;
-  border-radius: 20px;
-    width: 180px;
-    font-weight: 700;
-    background-color: rgb(0, 0, 0);
-  }
-  
-  .Container-promocional {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 500px;
-    height: 400px;
-    border-radius: 30px;
-    background-color: rgb(246, 244, 244);
-    box-shadow: 1px 1px 1px rgb(235, 235, 235);
-  }
-  
-  .Container-promocional div:nth-child(1) {
-    margin-left: 16px;
-    width: 200px;
-    text-align: left;
-    display: none;
-  }
-  
-  .Container-promocional div:nth-child(2) img {
-    width: 500px;
-  }
-
   /* SHOP CONTENT */
   .shop-container {
     display: flex;
@@ -225,7 +146,8 @@ body button{
     justify-content: center;
     width: 1000px;
     margin: auto;
-    gap: 1rem;
+    gap: 1.2rem;
+    flex-wrap: wrap;
   }
   
   .shop-container .box {
@@ -234,15 +156,11 @@ body button{
     border-radius: 0.5rem;
     box-shadow: 1px 2px 4px rgba(15, 54, 55, 0.1);
     padding-bottom: 50px;
+    width: 250px;
+    height: 200px;
   }
   
-  .shop-container .box img {
-    width: 100%;
-    height: 250px;
-    object-fit: contain;
-    border-radius: 0.5rem;
-    background: #ece9f358;
-  }
+  
   
   .shop-container .box h2,
   .shop-container .box span {
@@ -255,13 +173,13 @@ body button{
     position: absolute;
     bottom: 0.5rem;
     right: 1.6rem;
-    padding: 13px;
+    padding: 10px;
     font-style: italic;
     border-radius: 1rem;
     background-color: #4a4b4b;
     color: #fff;
     border: none;
-    width: 135px;
+    width: 105px;
     font-size: 1rem;
     cursor: pointer;
   }
@@ -277,23 +195,8 @@ body button{
     border-radius: 0.5rem;
   }
   
-  .heading {
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-  
-  .heading span {
-    border-bottom: 3px solid rgb(28, 195, 28);
-  }
 
 
-  /*
-  font-size: 60px;
-  letter-spacing: 0.05em; 
-  line-height: 90%;
-  text-transform: uppercase; 
-  font-weight: 800;
-*/
 
 .category-filter {
   margin-top: 20px;
@@ -303,6 +206,7 @@ body button{
 .category-select {
   padding: 10px;
   width: 200px;
-  border: 1px solid #ccc;
+  border: 1px solid #ac5050;
   border-radius: 4px;
+  background-color: rgb(255, 183, 0);
 }

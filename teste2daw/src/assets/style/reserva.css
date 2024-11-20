@@ -6,11 +6,19 @@
     color: black;
 }
 
+html, body {
+  height: 100%;
+  display: flex;
+  width: 100vw;
+  flex-direction: column; /* Permite que o conteúdo cresça na vertical */
+  background-color: rgb(255, 255, 255);
+}
+
 .content-reserva {
   flex: 1; /* Faz com que o conteúdo preencha o espaço restante */
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 100vw;
   background-color: rgb(244, 244, 244);
 }
 
@@ -18,7 +26,7 @@
   flex-direction: row;
   height: 90vh;
 display: flex;
-  width: 80vw;
+  width: 100vw;
   border-radius: 20px;
   gap: 10px;
 }
@@ -31,11 +39,12 @@ display: flex;
   .producteList {
     width: 200px;
     height: 200px;
+    margin: 30px;
   }
 
   
   .producteDetails {
-    margin-top: 20px;
+    margin-top: 70px;
     flex-grow: 1;
     display: flex;
     gap: 10px;
