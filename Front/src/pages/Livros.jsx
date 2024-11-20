@@ -11,7 +11,7 @@ const Livros = () => {
   useEffect(() => {
     const fetchLivros = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/books');
+        const response = await fetch('http://localhost:3005/api/books');
         if (!response.ok) {
           throw new Error('Erro ao carregar livros');
         }
@@ -24,7 +24,7 @@ const Livros = () => {
 
     const fetchCategorias = async () => {
       try {
-        const response = await fetch('http://localhost:3000/api/categorias');
+        const response = await fetch('http://localhost:3005/api/categorias');
         if (!response.ok) {
           throw new Error('Erro ao carregar categorias');
         }
@@ -56,8 +56,8 @@ const Livros = () => {
   // Função para atualizar o status de um livro (disponibilizar ou indisponibilizar)
   const atualizarStatusLivro = async (id, status) => {
     const url = status === "ativo"
-      ? `http://localhost:3000/api/books/ativar/${id}`
-      : `http://localhost:3000/api/books/desativar/${id}`;
+      ? `http://localhost:3005/api/books/ativar/${id}`
+      : `http://localhost:3005/api/books/desativar/${id}`;
     
     try {
       console.log(`Fazendo requisição para ${url}`);
