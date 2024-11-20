@@ -13,6 +13,7 @@ reservasRouter.get('/user/:userId', reservasController.getReservasByUser);
 reservasRouter.put('/user/:userId/livro/:livroId', reservasController.updateReserva);
 
 // Rota para deletar uma reserva específica de um usuário e livro
-reservasRouter.delete('/user/:userId/livro/:livroId', reservasController.deleteReserva);
+//reservasRouter.delete('/user/:userId/livro/:livroId', reservasController.deleteReserva);
+reservasRouter.delete('/:id_reserva', reservasController.deleteReserva);
 
 export default reservasRouter;

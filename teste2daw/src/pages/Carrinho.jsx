@@ -35,6 +35,41 @@ const Carrinho = () => {
       return updatedCart;
     });
   };
+// Realiza a reserva de um produto
+const handleReservar = async (product) => {
+  const userId = localStorage.getItem("userId"); // Recupera o ID do usuário do localStorage
+
+  if (!userId) {
+    alert("Você precisa estar logado para reservar um produto.");
+    return;
+  }
+
+  try {
+    const response = await fetch("http://localhost:3000/api/reservas", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id_user: userId,
+        id_livro: product.id_livro, // Assume que o produto contém `id_livro`
+        quantidade: product.quantity,
+        estado: "pendente",
+      }),
+    });
+
+    if (response.ok) {
+      alert(`Reserva realizada para o livro: ${product.titulo}`);
+    } else {
+      const errorData = await response.json();
+      alert(`Erro ao reservar o livro: ${errorData.message || "Erro desconhecido"}`);
+    }
+  } catch (error) {
+    console.error("Erro ao enviar a reserva:", error);
+    alert("Erro ao processar a reserva. Tente novamente.");
+  }
+};
+
 
   // Calcula o total do carrinho
   const calculateTotal = () => {
@@ -137,7 +172,13 @@ const Carrinho = () => {
                         >
                           Remover
                         </button>
-                        <button >Reservar</button>
+                        <button
+  className="button"
+  onClick={() => handleReservar(product)}
+>
+  Reservar
+</button>
+
                         <button > Cancelar Reserva</button>
                       </div>
                     </div>
