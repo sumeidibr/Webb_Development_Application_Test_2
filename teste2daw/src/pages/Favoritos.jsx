@@ -17,10 +17,7 @@ const Favoritos = () => {
            
                     <div className="producteeDetails">
                       <div className='productDetails_1'>
-                      <img src="" alt="" />
-                        <p>Preço: </p>
-                        <p>Status: </p>
-                        <p>Quantidade: </p>
+                      
                         </div>
                     </div>
                     <div className="buttons">
@@ -36,10 +33,7 @@ const Favoritos = () => {
            
                     <div className="producteeDetails">
                       <div className='productDetails_1'>
-                      <img src="" alt="" />
-                        <p>Preço: </p>
-                        <p>Status: </p>
-                        <p>Quantidade: </p>
+                   
                         </div>
                     </div>
                     <div className="buttons">

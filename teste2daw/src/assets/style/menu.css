@@ -10,7 +10,7 @@
 
 nav{
     position: fixed;
-    background: #ffffff;
+    background: #000000;
     width: 100%;
     z-index: 1;
     height: 70px;
@@ -103,6 +103,13 @@ nav .wrapper{
     padding: 0 0 0 15px;
     font-weight: 500;
     border-radius: 0;
+}
+
+.btn_logout{
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .mega-box{

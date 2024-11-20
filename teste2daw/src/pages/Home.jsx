@@ -54,37 +54,23 @@ const Home = () => {
           {/* Section 1 */}
           <div className="Container">
             <div className="home-container">
-              <h2>dondzissa kaya</h2>
+              <h2>Mabuko Online</h2>
               <p>
-                Conheça os últimos lançamentos <br />
+                Os melhores livros <br />
                 dos best-sellers
               </p>
               <button id="shop_now">Comprar</button>
             </div>
 
             <div className="home-container-img">
-
+    <img src="" alt="" />
             </div>
           </div>
 
          
-          {/* Section 2 */}
-          <div className="Advantages-Container">
-            <div className="Discount">
-              <p>Descontos todas semanas</p>
-            </div>
-            <div>
-              <p>Suporte 24/7 dias</p>
-            </div>
-            <div>
-              <p>Entrega ao domicílio</p>
-            </div>
-            <div>
-              <p>Pagamento seguro</p>
-            </div>
-          </div>
-
-          {/* Exibição dos livros com base na categoria selecionada */}
+          
+        
+       
           <div className="shop-container">
             {livrosFiltrados.length > 0 ? (
               livrosFiltrados.map((livro) => (
@@ -103,7 +89,7 @@ const Home = () => {
             )}
           </div>
 
-           {/* Filtro de Categoria */}
+           
            <div className="category-filter">
             <h3>Filtrar por Categoria</h3>
             <select 
