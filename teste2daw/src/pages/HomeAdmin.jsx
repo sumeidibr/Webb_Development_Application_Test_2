@@ -84,46 +84,48 @@ const BookForm = () => {
       <h2>Adicionar Livro</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
-
-      <input
-        type="text"
-        name="titulo"
-        value={bookData.titulo}
-        onChange={handleChange}
-        placeholder="Título"
-        required
-      />
-      <input
-        type="text"
-        name="autor"
-        value={bookData.autor}
-        onChange={handleChange}
-        placeholder="Autor"
-        required
-      />
-      <textarea
-        name="descricao"
-        value={bookData.descricao}
-        onChange={handleChange}
-        placeholder="Descrição"
-        required
-      />
-      <input
-        type="number"
-        name="preco"
-        value={bookData.preco}
-        onChange={handleChange}
-        placeholder="Preço"
-        required
-      />
-      <input
-        type="number"
-        name="quantidade"
-        value={bookData.quantidade}
-        onChange={handleChange}
-        placeholder="Quantidade"
-        required
-      />
+<div>
+  
+        <input
+          type="text"
+          name="titulo"
+          value={bookData.titulo}
+          onChange={handleChange}
+          placeholder="Título"
+          required
+        />
+        <input
+          type="text"
+          name="autor"
+          value={bookData.autor}
+          onChange={handleChange}
+          placeholder="Autor"
+          required
+        />
+        <textarea
+          name="descricao"
+          value={bookData.descricao}
+          onChange={handleChange}
+          placeholder="Descrição"
+          required
+        />
+        <input
+          type="number"
+          name="preco"
+          value={bookData.preco}
+          onChange={handleChange}
+          placeholder="Preço"
+          required
+        />
+        <input
+          type="number"
+          name="quantidade"
+          value={bookData.quantidade}
+          onChange={handleChange}
+          placeholder="Quantidade"
+          required
+        />
+</div>
 
       {/* Campo para selecionar a Categoria */}
       <select

@@ -5,6 +5,13 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
+    margin-top: 40px;
+  }
+
+  .book-form div{
+    width: 700px;
+    margin: auto;
+    
   }
   
   .book-form h2 {
@@ -20,11 +27,12 @@
     border: 1px solid #ccc;
     border-radius: 4px;
     font-size: 16px;
+    background-color: white;
   }
   
   .book-form button {
     width: 100%;
-    padding: 10px;
+    padding: 30px;
     background-color: #007bff;
     color: #fff;
     border: none;
@@ -37,3 +45,9 @@
     background-color: #0056b3;
   }
   
+  .book-form select{
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: rgb(255, 255, 255);
+  }
