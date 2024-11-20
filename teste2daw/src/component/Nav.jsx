@@ -9,6 +9,8 @@ const Navbar = () => {
     // Limpar o token e informações do usuário do localStorage
     localStorage.removeItem('token');
     localStorage.removeItem('userType');
+    localStorage.removeItem('userId');
+    localStorage.removeItem('userName');
 
     // Redirecionar para a página de login após o logout
     navigate('/login');

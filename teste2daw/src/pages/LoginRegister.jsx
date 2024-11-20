@@ -51,7 +51,7 @@ const handleLogin = async (e) => {
 
       // Armazenar dados adicionais (exemplo: nome do usuário)
       localStorage.setItem('userName', data.user.nome); // Salva o nome do usuário
-      localStorage.setItem('userName', data.id_user); 
+  
 
       // Redirecionamento conforme o tipo de usuário
       if (data.user.tipo_usuario === 'comum') {
