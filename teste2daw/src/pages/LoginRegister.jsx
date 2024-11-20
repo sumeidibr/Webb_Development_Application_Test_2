@@ -22,45 +22,52 @@ const LoginRegister = () => {
   };
 
   // Função para fazer o login
-  const handleLogin = async (e) => {
-    e.preventDefault(); // Previne o comportamento padrão do formulário
+ // Função para fazer o login
+const handleLogin = async (e) => {
+  e.preventDefault(); // Previne o comportamento padrão do formulário
 
-    // Verificação básica
-    if (!email || !password) {
-      setErrorMessage('Por favor, preencha todos os campos.');
-      return;
-    }
+  // Verificação básica
+  if (!email || !password) {
+    setErrorMessage('Por favor, preencha todos os campos.');
+    return;
+  }
 
-    const loginData = { email, password };
+  const loginData = { email, password };
 
-    try {
-      const response = await fetch('http://localhost:3000/api/users/Entrar', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(loginData),
-      });
+  try {
+    const response = await fetch('http://localhost:3000/api/users/Entrar', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(loginData),
+    });
 
-      const data = await response.json();
+    const data = await response.json();
 
-      if (response.ok) {
-        // Armazene os dados do usuário no localStorage
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('userType', data.user.tipo_usuario);
+    if (response.ok) {
+      // Armazene os dados do usuário no localStorage
+      localStorage.setItem('token', data.token); // Salva o token
+      localStorage.setItem('userType', data.user.tipo_usuario); // Tipo de usuário (comum ou admin)
+      localStorage.setItem('userId', data.user.id); // ID do usuário
 
-        // Redirecionamento conforme o tipo de usuário
-        if (data.user.tipo_usuario === 'comum') {
-          navigate('/');
-        } else if (data.user.tipo_usuario === 'admin') {
-          navigate('/admin');
-        }
-      } else {
-        setErrorMessage(data.message || 'Erro ao fazer login');
+      // Armazenar dados adicionais (exemplo: nome do usuário)
+      localStorage.setItem('userName', data.user.nome); // Salva o nome do usuário
+      localStorage.setItem('userName', data.id_user); 
+
+      // Redirecionamento conforme o tipo de usuário
+      if (data.user.tipo_usuario === 'comum') {
+        navigate('/'); // Redireciona para a página principal se o usuário for comum
+      } else if (data.user.tipo_usuario === 'admin') {
+        navigate('/admin'); // Redireciona para a página do admin se for admin
       }
-    } catch (error) {
-      console.error('Erro de conexão:', error);
-      setErrorMessage('Erro de conexão. Tente novamente mais tarde.');
+    } else {
+      setErrorMessage(data.message || 'Erro ao fazer login');
     }
-  };
+  } catch (error) {
+    console.error('Erro de conexão:', error);
+    setErrorMessage('Erro de conexão. Tente novamente mais tarde.');
+  }
+};
+
 
   // Função para fazer o registro
   const handleRegister = async (e) => {

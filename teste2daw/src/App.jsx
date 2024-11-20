@@ -46,7 +46,7 @@ function MainApp() {
             <Route path="/login" element={<LoginRegister />} />
             <Route path="/carrinho" element={<Carrinho />} />
             <Route path="/reserva" element={<Reserva />} />
-            <Route path="/detalhes" element={<Detalhes />} />
+            <Route path="/detalhes/:id" element={<Detalhes />} />
             <Route path="/favoritos" element={<Favoritos />} />
 
             {/* Rotas Admin */}

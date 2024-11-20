@@ -1,16 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../assets/style/home.css"; 
 
-
 const Home = () => {
-  // Estado para armazenar a categoria selecionada
-  const [selectedCategory, setSelectedCategory] = useState("");
+  const [livros, setLivros] = useState([]); // Estado para armazenar os livros
+  const [categorias, setCategorias] = useState([]); // Estado para armazenar categorias
+  const [selectedCategory, setSelectedCategory] = useState(""); // Categoria selecionada
+  const [error, setError] = useState(null); // Para capturar erros da API
 
-  // Função para tratar a mudança na seleção da categoria
-  const handleCategoryChange = (e) => {
-    setSelectedCategory(e.target.value);
-  };
+  // Buscar livros e categorias da API
+  useEffect(() => {
+    const fetchLivros = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/books");
+        if (!response.ok) {
+          throw new Error("Erro ao carregar livros");
+        }
+        const data = await response.json();
+        setLivros(data); // Atualiza o estado com os livros
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    const fetchCategorias = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/categorias");
+        if (!response.ok) {
+          throw new Error("Erro ao carregar categorias");
+        }
+        const data = await response.json();
+        setCategorias(data); // Atualiza o estado com as categorias
+      } catch (error) {
+        setError(error.message);
+      }
+    };
+
+    fetchLivros();
+    fetchCategorias();
+  }, []);
+
+  // Filtrar livros pela categoria selecionada
+  const livrosFiltrados = livros.filter((livro) =>
+    selectedCategory
+      ? livro.categoria_id === categorias.find((cat) => cat.nome === selectedCategory)?.categoria_id
+      : true
+  );
 
   return (
     <div className="content">
@@ -27,7 +62,7 @@ const Home = () => {
               <button id="shop_now">Comprar</button>
             </div>
 
-            <div className="home-container-img"> </div>
+            <div className="home-container-img"></div>
           </div>
 
           {/* Filtro de Categoria */}
@@ -35,16 +70,15 @@ const Home = () => {
             <h3>Filtrar por Categoria</h3>
             <select 
               value={selectedCategory} 
-              onChange={handleCategoryChange} 
+              onChange={(e) => setSelectedCategory(e.target.value)} 
               className="category-select"
             >
-              <option value="">Selecione uma Categoria</option>
-              <option value="ficcao">Ficção</option>
-              <option value="romance">Romance</option>
-              <option value="aventura">Aventura</option>
-              <option value="sci-fi">Ficção Científica</option>
-              <option value="biografia">Biografia</option>
-              <option value="historia">História</option>
+              <option value="">Todas as Categorias</option>
+              {categorias.map((categoria) => (
+                <option key={categoria.categoria_id} value={categoria.nome}>
+                  {categoria.nome}
+                </option>
+              ))}
             </select>
           </div>
 
@@ -66,16 +100,21 @@ const Home = () => {
 
           {/* Exibição dos livros com base na categoria selecionada */}
           <div className="shop-container">
-            <Link to="/detalhes">
-              <div className="box">
-                <img src="teste3-removebg-preview.png" alt=""/>
-                <h2>Nike Therma</h2>
-                <span>70.88$</span>
-                <button>Sandals</button>
-              </div>
-            </Link>
-            {/* Adicione mais livros com base na categoria */}
-            {/* Exemplo de livro */}
+            {livrosFiltrados.length > 0 ? (
+              livrosFiltrados.map((livro) => (
+                <Link to={`/detalhes/${livro.id_livro}`} key={livro.id_livro}>
+                  <div className="box">
+                    <img src="teste3-removebg-preview.png" alt={livro.titulo} />
+                    <h2>{livro.titulo}</h2>
+                    <h2>{livro.autor}</h2>
+                    <span>{livro.preco} $</span>
+                    <button>Ver detalhes</button>
+                  </div>
+                </Link>
+              ))
+            ) : (
+              <p>Nenhum livro encontrado para a categoria selecionada.</p>
+            )}
           </div>
         </article>
       </main>
