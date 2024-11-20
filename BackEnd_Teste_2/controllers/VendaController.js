@@ -4,11 +4,11 @@ const ItemVenda = db.ItemVenda;
 const Livro = db.Livro; // Supondo que você tenha um modelo Livro para o estoque
 
 const finalizarCompra = async (req, res) => {
-  const { numeroCelular, endereco, itens } = req.body; // Itens será um array de objetos { id_livro, quantidade, preco }
+  const { itens } = req.body; // Itens será um array de objetos { id_livro, quantidade, preco }
 
   const userId = req.userId; // Recupera o id do usuário, assumindo que está autenticado
 
-  if (!numeroCelular || !endereco || !itens || itens.length === 0) {
+  if (!numeroCelular || !itens || itens.length === 0) {
     return res.status(400).json({ message: "Preencha todos os dados corretamente" });
   }
 
@@ -19,9 +19,7 @@ const finalizarCompra = async (req, res) => {
     const venda = await Venda.create(
       {
         id_user: userId,
-        numeroCelular,
-        endereco,
-        valorTotal: itens.reduce((total, item) => total + item.preco * item.quantidade, 0),
+        data: new Date(),
       },
       { transaction }
     );
@@ -62,6 +60,7 @@ const finalizarCompra = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
 
 
 const createVenda = async (req, res) => {
