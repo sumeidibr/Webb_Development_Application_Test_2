@@ -22,7 +22,7 @@ html, body {
   height: 100%;
   display: flex;
   flex-direction: column; /* Permite que o conteúdo cresça na vertical */
-  background-color: white;
+  background-color: rgb(255, 255, 255);
 }
 
 body button{
@@ -54,7 +54,7 @@ body button{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-image: url('../img/transferir.jpg');
+  background-image: url('../img/transferir2.jpg');
   background-position: 70%;
   background-size: cover;
 }

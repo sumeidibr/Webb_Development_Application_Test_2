@@ -10,29 +10,34 @@
   flex: 1; /* Faz com que o conteúdo preencha o espaço restante */
   display: flex;
   flex-direction: column;
-  width: 80vw;
+  width: 100vw;
   background-color: rgb(244, 244, 244);
 }
 
 .containeree {
   flex-direction: row;
   height: 90vh;
-display: flex;
+  display: flex;
   width: 80vw;
   border-radius: 20px;
   gap: 10px;
-
+  margin: auto;
+  background-color: rgb(234, 234, 234);
 }
 
 .containeree .producteeList {
     list-style: none;
     padding: 0;
+    margin-top: 50px;
+    margin-left: 10px;
+    gap: 10px;
   }
 
 
   .producteeList {
     width: 200px;
     height: 200px;
+  
   }
 
   

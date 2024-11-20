@@ -98,7 +98,7 @@ const Detalhes = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/favoritos/${userId}/${livro.id_livro}`,
+        `http://localhost:3005/api/favoritos/${userId}/${livro.id_livro}`,
         {
           method: "DELETE",
         }

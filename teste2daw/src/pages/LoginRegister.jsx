@@ -120,7 +120,7 @@ const handleLogin = async (e) => {
       <div className="form">
         {/* Área de Login */}
         <div className="login_area">
-          <p style={{ fontSize: '1.4rem' }}>
+          <p style={{ fontSize: '1.4rem', color: 'white;' }}>
             <b>Login into your account</b>
           </p>
           <input
