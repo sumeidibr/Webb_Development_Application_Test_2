@@ -1,5 +1,68 @@
 import db from '../models/index.js';
 const Venda = db.Venda;
+const ItemVenda = db.ItemVenda;
+const Livro = db.Livro; // Supondo que você tenha um modelo Livro para o estoque
+
+const finalizarCompra = async (req, res) => {
+  const { numeroCelular, endereco, itens } = req.body; // Itens será um array de objetos { id_livro, quantidade, preco }
+
+  const userId = req.userId; // Recupera o id do usuário, assumindo que está autenticado
+
+  if (!numeroCelular || !endereco || !itens || itens.length === 0) {
+    return res.status(400).json({ message: "Preencha todos os dados corretamente" });
+  }
+
+  const transaction = await db.sequelize.transaction(); // Inicia uma transação para garantir que tudo ou nada seja realizado
+
+  try {
+    // 1. Criar a venda
+    const venda = await Venda.create(
+      {
+        id_user: userId,
+        numeroCelular,
+        endereco,
+        valorTotal: itens.reduce((total, item) => total + item.preco * item.quantidade, 0),
+      },
+      { transaction }
+    );
+
+    // 2. Criar os itens da venda e atualizar o estoque
+    for (const item of itens) {
+      const livro = await Livro.findByPk(item.id_livro, { transaction });
+
+      if (!livro || livro.quantidade < item.quantidade) {
+        throw new Error(`Estoque insuficiente para o livro ${livro.titulo}`);
+      }
+
+      // 2.1. Criar o item de venda
+      await ItemVenda.create(
+        {
+          id_venda: venda.id_venda,
+          id_livro: item.id_livro,
+          quantidade: item.quantidade,
+          preco: item.preco,
+        },
+        { transaction }
+      );
+
+      // 2.2. Atualizar o estoque do livro
+      await Livro.update(
+        { quantidade: livro.quantidade - item.quantidade },
+        { where: { id_livro: item.id_livro }, transaction }
+      );
+    }
+
+    // 3. Confirmar a transação
+    await transaction.commit();
+
+    res.status(201).json({ message: "Compra finalizada com sucesso!" });
+  } catch (error) {
+    // Se algo der errado, desfaz tudo o que foi feito na transação
+    await transaction.rollback();
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 const createVenda = async (req, res) => {
   try {
@@ -68,5 +131,6 @@ export default {
   getAllVendas,
   getVendaById,
   updateVenda,
-  deleteVenda
+  deleteVenda,
+  finalizarCompra
 };

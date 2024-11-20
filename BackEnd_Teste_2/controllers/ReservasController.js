@@ -66,7 +66,7 @@ const updateReserva = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
-
+/*
 const deleteReserva = async (req, res) => {
   try {
     // Busca e deleta a reserva usando o id_reserva
@@ -82,7 +82,45 @@ const deleteReserva = async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
+};*/
+const deleteReserva = async (req, res) => {
+  const { id_reserva } = req.params;
+
+  try {
+    // Busca a reserva antes de deletá-la
+    const reserva = await Reservas.findOne({ where: { id_reserva } });
+
+    if (!reserva) {
+      return res.status(404).json({ message: 'Reserva não encontrada' });
+    }
+
+    const { id_livro, quantidade } = reserva;
+
+    // Inicia uma transação para garantir que ambas as operações (devolução e exclusão) ocorram juntas
+    await db.sequelize.transaction(async (t) => {
+      // Busca o livro associado ao id_livro
+      const livro = await Livros.findOne({ where: { id_livro }, transaction: t });
+
+      if (!livro) {
+        throw new Error('Livro não encontrado.');
+      }
+
+      // Restaura a quantidade do livro no estoque
+      await Livros.update(
+        { quantidade: livro.quantidade + quantidade }, // Adiciona a quantidade da reserva ao estoque
+        { where: { id_livro }, transaction: t }
+      );
+
+      // Deleta a reserva
+      await Reservas.destroy({ where: { id_reserva }, transaction: t });
+    });
+
+    res.status(204).json({ message: 'Reserva deletada e estoque atualizado com sucesso' });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
+
 
 
 export default {

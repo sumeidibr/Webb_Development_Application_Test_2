@@ -3,10 +3,6 @@ import "../assets/style/carrinho.css";
 
 const Carrinho = () => {
   const [cart, setCart] = useState([]); // Carrinho de compras
-  const [showPaymentModal, setShowPaymentModal] = useState(false); // Modal de pagamento
-  const [numeroCelular, setNumeroCelular] = useState(""); // Número de celular
-  const [endereco, setEndereco] = useState(""); // Endereço de entrega
-  const [paymentMessage, setPaymentMessage] = useState(""); // Mensagem de pagamento
 
   // Recupera o carrinho do localStorage
   useEffect(() => {
@@ -19,7 +15,10 @@ const Carrinho = () => {
     setCart((prevCart) => {
       const updatedCart = [...prevCart];
       const item = updatedCart[index];
-      if (item.quantity + delta >= 1 && item.quantity + delta <= item.quantidade) {
+      if (
+        item.quantity + delta >= 1 &&
+        item.quantity + delta <= item.quantidade
+      ) {
         item.quantity += delta;
       }
       localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -35,41 +34,44 @@ const Carrinho = () => {
       return updatedCart;
     });
   };
-// Realiza a reserva de um produto
-const handleReservar = async (product) => {
-  const userId = localStorage.getItem("userId"); // Recupera o ID do usuário do localStorage
+  // Realiza a reserva de um produto
+  const handleReservar = async (product) => {
+    const userId = localStorage.getItem("userId"); // Recupera o ID do usuário do localStorage
 
-  if (!userId) {
-    alert("Você precisa estar logado para reservar um produto.");
-    return;
-  }
-
-  try {
-    const response = await fetch("http://localhost:3000/api/reservas", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id_user: userId,
-        id_livro: product.id_livro, // Assume que o produto contém `id_livro`
-        quantidade: product.quantity,
-        estado: "pendente",
-      }),
-    });
-
-    if (response.ok) {
-      alert(`Reserva realizada para o livro: ${product.titulo}`);
-    } else {
-      const errorData = await response.json();
-      alert(`Erro ao reservar o livro: ${errorData.message || "Erro desconhecido"}`);
+    if (!userId) {
+      alert("Você precisa estar logado para reservar um produto.");
+      return;
     }
-  } catch (error) {
-    console.error("Erro ao enviar a reserva:", error);
-    alert("Erro ao processar a reserva. Tente novamente.");
-  }
-};
 
+    try {
+      const response = await fetch("http://localhost:3000/api/reservas", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id_user: userId,
+          id_livro: product.id_livro, // Assume que o produto contém `id_livro`
+          quantidade: product.quantity,
+          estado: "pendente",
+        }),
+      });
+
+      if (response.ok) {
+        alert(`Reserva realizada para o livro: ${product.titulo}`);
+      } else {
+        const errorData = await response.json();
+        alert(
+          `Erro ao reservar o livro: ${
+            errorData.message || "Erro desconhecido"
+          }`
+        );
+      }
+    } catch (error) {
+      console.error("Erro ao enviar a reserva:", error);
+      alert("Erro ao processar a reserva. Tente novamente.");
+    }
+  };
 
   // Calcula o total do carrinho
   const calculateTotal = () => {
@@ -77,54 +79,6 @@ const handleReservar = async (product) => {
       (total, product) => total + parseFloat(product.preco) * product.quantity,
       0
     );
-  };
-
-  // Finaliza a compra
-  const handleFinalizarCompra = async () => {
-    if (!numeroCelular || !endereco) {
-      alert("Por favor, preencha todos os campos.");
-      return;
-    }
-
-    const totalValor = calculateTotal();
-
-    try {
-      const response = await fetch("http://localhost:3000/iniciar-transacao", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          numeroCelular: numeroCelular,
-          valor: totalValor,
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        alert("Compra efetuada com sucesso!");
-        setPaymentMessage("Compra finalizada com sucesso!");
-        localStorage.removeItem("cart");
-        setCart([]);
-      } else {
-        alert(`Erro: ${data.erro.output_ResponseDesc}`);
-        setPaymentMessage(`Erro: ${data.erro.output_ResponseDesc}`);
-      }
-    } catch (error) {
-      alert("Erro ao processar o pagamento. Tente novamente.");
-      setPaymentMessage("Erro ao processar o pagamento. Tente novamente.");
-      console.error("Erro de requisição:", error);
-    }
-  };
-
-  const handlePurchaseClick = () => {
-    setShowPaymentModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowPaymentModal(false);
-    setPaymentMessage(""); // Limpa a mensagem de pagamento
   };
 
   return (
@@ -173,13 +127,11 @@ const handleReservar = async (product) => {
                           Remover
                         </button>
                         <button
-  className="button"
-  onClick={() => handleReservar(product)}
->
-  Reservar
-</button>
-
-                        <button > Cancelar Reserva</button>
+                          className="button"
+                          onClick={() => handleReservar(product)}
+                        >
+                          Reservar
+                        </button>
                       </div>
                     </div>
                   </li>
@@ -191,41 +143,12 @@ const handleReservar = async (product) => {
               <h3>Total: {calculateTotal().toFixed(2)}$</h3>
             </div>
 
-            <button className="button" onClick={handlePurchaseClick}>
-              Finalizar Compra
-            </button>
+            <button>Finalizar Compra</button>
           </>
         ) : (
           <p>Carrinho vazio.</p>
         )}
       </div>
-
-      {showPaymentModal && (
-        <div className="paymentModal">
-          <h3>Finalizar Compra</h3>
-          <label htmlFor="numeroCelular">Número de Celular:</label>
-          <input
-            type="text"
-            id="numeroCelular"
-            value={numeroCelular}
-            onChange={(e) => setNumeroCelular(e.target.value)}
-          />
-          <label htmlFor="endereco">Endereço de Entrega:</label>
-          <input
-            type="text"
-            id="endereco"
-            value={endereco}
-            onChange={(e) => setEndereco(e.target.value)}
-          />
-          <button className="button" onClick={handleFinalizarCompra}>
-            Finalizar
-          </button>
-          <button className="button" onClick={handleCloseModal}>
-            Fechar
-          </button>
-          <div className="paymentMessage">{paymentMessage}</div>
-        </div>
-      )}
     </div>
   );
 };
