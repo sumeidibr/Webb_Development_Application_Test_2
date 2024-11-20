@@ -54,7 +54,7 @@ const Home = () => {
           {/* Section 1 */}
           <div className="Container">
             <div className="home-container">
-              <h2>dondzissa kaya</h2>
+              <h2>Mabuko online</h2>
               <p>
                 Conheça os últimos lançamentos <br />
                 dos best-sellers

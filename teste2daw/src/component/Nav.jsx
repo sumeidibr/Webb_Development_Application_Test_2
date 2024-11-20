@@ -23,9 +23,7 @@ const Navbar = () => {
       <div className="wrapper">
         <div className="logo">
           <Link to="/">
-            <span style={{ color: 'rgb(7, 79, 37)', fontWeight: 'bold', fontSize: '25pt' }}>
-              Dondzissa<sup style={{ fontSize: '0.5rem' }}>TM</sup>
-            </span>
+          
           </Link>
         </div>
 
@@ -72,14 +70,14 @@ const Navbar = () => {
           </li>
 
           <li>
-            <Link to="/reserva" className="desktop-item">Reservas</Link>
+            <Link to="/reserva" className="desktop-item">lista reserva</Link>
           </li>
 
           <li>
-            <Link to="/carrinho" className="desktop-item">Carrinho</Link>
+            <Link to="/carrinho" className="desktop-item">Cart</Link>
           </li>
           <li>
-            <Link to="/favoritos" className="desktop-item">Favoritos</Link>
+            <Link to="/favoritos" className="desktop-item">Favor</Link>
           </li>
 
           <li>   
@@ -104,7 +102,7 @@ const Navbar = () => {
                 onClick={handleLogout}
               />
             )}
-            <input type="search" className="btn_pesquisa" placeholder="Search" />
+           
           </div> 
           </li>
           
