@@ -82,11 +82,13 @@ const Navbar = () => {
             <Link to="/favoritos" className="desktop-item">Favoritos</Link>
           </li>
 
-          <li>
-            <Link to="/sobre-nos">Sobre nós</Link>
-          </li>
-
+          <li>   
           <div className="Componentes">
+          {userName && (
+            <span className="user-name" style={{ margin: '0 10px', fontWeight: 'bold' }}>
+              Olá, {userName}!
+            </span>
+          )}
             <Link to="#">
               <input type="button" className="btn_carrinho" />
             </Link>
@@ -103,7 +105,11 @@ const Navbar = () => {
               />
             )}
             <input type="search" className="btn_pesquisa" placeholder="Search" />
-          </div>
+          </div> 
+          </li>
+          
+
+
         </ul>
 
         <label htmlFor="menu-btn" className="btn menu-btn">

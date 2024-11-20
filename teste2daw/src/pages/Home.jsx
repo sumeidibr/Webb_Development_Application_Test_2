@@ -62,26 +62,12 @@ const Home = () => {
               <button id="shop_now">Comprar</button>
             </div>
 
-            <div className="home-container-img"></div>
+            <div className="home-container-img">
+
+            </div>
           </div>
 
-          {/* Filtro de Categoria */}
-          <div className="category-filter">
-            <h3>Filtrar por Categoria</h3>
-            <select 
-              value={selectedCategory} 
-              onChange={(e) => setSelectedCategory(e.target.value)} 
-              className="category-select"
-            >
-              <option value="">Todas as Categorias</option>
-              {categorias.map((categoria) => (
-                <option key={categoria.categoria_id} value={categoria.nome}>
-                  {categoria.nome}
-                </option>
-              ))}
-            </select>
-          </div>
-
+         
           {/* Section 2 */}
           <div className="Advantages-Container">
             <div className="Discount">
@@ -104,11 +90,11 @@ const Home = () => {
               livrosFiltrados.map((livro) => (
                 <Link to={`/detalhes/${livro.id_livro}`} key={livro.id_livro}>
                   <div className="box">
-                    <img src="teste3-removebg-preview.png" alt={livro.titulo} />
-                    <h2>{livro.titulo}</h2>
-                    <h2>{livro.autor}</h2>
+                    
+                    <h2> {livro.titulo}</h2>
+                    <h2> {livro.autor}</h2>
                     <span>{livro.preco} $</span>
-                    <button>Ver detalhes</button>
+                    <button> Detalhes</button>
                   </div>
                 </Link>
               ))
@@ -116,6 +102,24 @@ const Home = () => {
               <p>Nenhum livro encontrado para a categoria selecionada.</p>
             )}
           </div>
+
+           {/* Filtro de Categoria */}
+           <div className="category-filter">
+            <h3>Filtrar por Categoria</h3>
+            <select 
+              value={selectedCategory} 
+              onChange={(e) => setSelectedCategory(e.target.value)} 
+              className="category-select"
+            >
+              <option value="">Todas as Categorias</option>
+              {categorias.map((categoria) => (
+                <option key={categoria.categoria_id} value={categoria.nome}>
+                  {categoria.nome}
+                </option>
+              ))}
+            </select>
+          </div>
+
         </article>
       </main>
     </div>

@@ -35,7 +35,7 @@ const handleLogin = async (e) => {
   const loginData = { email, password };
 
   try {
-    const response = await fetch('http://localhost:3002/api/users/Entrar', {
+    const response = await fetch('http://localhost:3005/api/users/Entrar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginData),
@@ -91,7 +91,7 @@ const handleLogin = async (e) => {
     const registerData = { name, email, password };
 
     try {
-      const response = await fetch('http://localhost:3000/api/users', {
+      const response = await fetch('http://localhost:3005/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registerData),

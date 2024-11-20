@@ -54,7 +54,7 @@ const Carrinho = () => {
     const totalValor = calculateTotal();
 
     try {
-      const response = await fetch("http://localhost:3000/iniciar-transacao", {
+      const response = await fetch("http://localhost:3005/iniciar-transacao", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
