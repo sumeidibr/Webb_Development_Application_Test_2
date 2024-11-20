@@ -26,6 +26,33 @@ const Detalhes = () => {
     fetchLivro();
   }, [id]);
 
+    // Adiciona o livro ao carrinho no Local Storage
+    const addToCart = (livro) => {
+      const currentCart = JSON.parse(localStorage.getItem("cart")) || [];
+      const quantityInStock = livro.quantidade || 0;
+  
+      // Verifique se o livro já está no carrinho
+      const itemIndex = currentCart.findIndex((item) => item.id_livro === livro.id_livro);
+  
+      if (itemIndex !== -1) {
+        // Se o livro já está no carrinho, apenas incrementa a quantidade
+        const item = currentCart[itemIndex];
+        if (item.quantity < quantityInStock) {
+          item.quantity += 1;
+          alert("Quantidade do livro atualizada no carrinho!");
+        } else {
+          alert("Quantidade máxima em estoque atingida!");
+        }
+      } else {
+        // Se o livro não está no carrinho, adicione-o com a quantidade inicial
+        currentCart.push({ ...livro, quantity: 1 }); // Inicia com a quantidade 1
+        alert("Livro adicionado ao carrinho!");
+      }
+  
+      // Atualiza o carrinho no localStorage
+      localStorage.setItem("cart", JSON.stringify(currentCart));
+    };
+
   // Função para adicionar o livro aos favoritos
   const addToFavorites = async () => {
     const userId = localStorage.getItem("userId"); // Obtém o ID do usuário do localStorage
@@ -43,8 +70,8 @@ const Detalhes = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: userId,
-          livroId: livro.id_livro,
+          id_user: userId,
+          id_livro: livro.id_livro,
         }),
       });
 

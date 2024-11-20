@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';  // useNavigate para redirecionar
+import { Link, useNavigate } from 'react-router-dom'; // useNavigate para redirecionar
 import '../assets/style/menu.css';
 
 const Navbar = () => {
@@ -16,6 +16,8 @@ const Navbar = () => {
     navigate('/login');
   };
 
+  const userName = localStorage.getItem('userName');
+
   return (
     <nav>
       <div className="wrapper">
@@ -28,8 +30,20 @@ const Navbar = () => {
         </div>
 
         <div className="Componentes_2">
-          <input type="search" className="btn_pesquisa" placeholder="Search" style={{ margin: '5px' }} />
-          
+          <input
+            type="search"
+            className="btn_pesquisa"
+            placeholder="Search"
+            style={{ margin: '5px' }}
+          />
+
+          {/* Exibe o nome do usuário logado */}
+          {userName && (
+            <span className="user-name" style={{ margin: '0 10px', fontWeight: 'bold' }}>
+              Olá, {userName}!
+            </span>
+          )}
+
           {/* Botão de login ou logout */}
           {localStorage.getItem('token') ? (
             <input
@@ -50,7 +64,7 @@ const Navbar = () => {
         <input type="radio" name="slide" id="cancel-btn" />
         <ul className="nav-links">
           <label htmlFor="cancel-btn" className="btn cancel-btn">
-            <i className='bx bx-x'></i>
+            <i className="bx bx-x"></i>
           </label>
 
           <li>
@@ -68,11 +82,17 @@ const Navbar = () => {
             <Link to="/favoritos" className="desktop-item">Favoritos</Link>
           </li>
 
-          <li><Link to="/sobre-nos">Sobre nós</Link></li>
+          <li>
+            <Link to="/sobre-nos">Sobre nós</Link>
+          </li>
 
           <div className="Componentes">
-            <Link to="#"><input type="button" className="btn_carrinho" /></Link>
-            <Link to="#"><input type="button" className="btn_favorito" /></Link>
+            <Link to="#">
+              <input type="button" className="btn_carrinho" />
+            </Link>
+            <Link to="#">
+              <input type="button" className="btn_favorito" />
+            </Link>
             {/* Se o usuário estiver logado, mostra o botão de logout */}
             {localStorage.getItem('token') && (
               <input
@@ -87,7 +107,7 @@ const Navbar = () => {
         </ul>
 
         <label htmlFor="menu-btn" className="btn menu-btn">
-          <i className='bx bx-menu'></i>
+          <i className="bx bx-menu"></i>
         </label>
       </div>
     </nav>
