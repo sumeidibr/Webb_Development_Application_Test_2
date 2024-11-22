@@ -13,7 +13,7 @@ const Home = () => {
   useEffect(() => {
     const fetchLivros = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/books");
+        const response = await fetch("http://localhost:3000/api/books/disp");
         if (!response.ok) {
           throw new Error("Erro ao carregar livros");
         }

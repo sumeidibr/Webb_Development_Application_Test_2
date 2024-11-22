@@ -99,6 +99,25 @@ const indisponibilizarLivro = async (req, res) => {
   }
 };
 
+const getAllLivrosDisponiv = async (req, res) => {
+  try {
+    // Adicionando a condição para filtrar livros com status "inativo"
+    const livros = await Livro.findAll({
+      where: {
+        status: 'ativo', // Filtra os livros com status igual a "inativo"
+      },
+    });
+
+    if (livros.length === 0) {
+      return res.status(404).json({ message: "Nenhum livro inativo encontrado." });
+    }
+
+    res.status(200).json(livros);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 export default {
   createLivro,
@@ -107,5 +126,6 @@ export default {
   updateLivro,
   deleteLivro,
   disponibilizarLivro,
-  indisponibilizarLivro
+  indisponibilizarLivro,
+  getAllLivrosDisponiv
 };

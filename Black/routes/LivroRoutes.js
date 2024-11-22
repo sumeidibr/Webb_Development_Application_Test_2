@@ -8,6 +8,7 @@ livroRouter.post('/', livroController.createLivro);
 
 // Rota para obter todos os livros
 livroRouter.get('/', livroController.getAllLivros);
+livroRouter.get('/disp', livroController.getAllLivrosDisponiv);
 
 // Rota para obter um livro específico por ID
 livroRouter.get('/:id', livroController.getLivroById);
