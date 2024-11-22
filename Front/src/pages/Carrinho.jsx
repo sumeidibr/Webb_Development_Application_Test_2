@@ -34,6 +34,7 @@ const Carrinho = () => {
       return updatedCart;
     });
   };
+
   // Realiza a reserva de um produto
   const handleReservar = async (product) => {
     const userId = localStorage.getItem("userId"); // Recupera o ID do usuário do localStorage
@@ -51,7 +52,7 @@ const Carrinho = () => {
         },
         body: JSON.stringify({
           id_user: userId,
-          id_livro: product.id_livro, // Assume que o produto contém `id_livro`
+          id_livro: product.id_livro,
           quantidade: product.quantity,
           estado: "pendente",
         }),
@@ -72,6 +73,58 @@ const Carrinho = () => {
       alert("Erro ao processar a reserva. Tente novamente.");
     }
   };
+
+  const finalizarCompra = async () => {
+    const userId = localStorage.getItem("userId"); // Recupera o ID do usuário do localStorage
+  
+    if (!userId) {
+      alert("Você precisa estar logado para finalizar a compra.");
+      return;
+    }
+  
+    // Monta o corpo da requisição
+    const requestBody = {
+      userId, // Inclui o userId no corpo da requisição
+      itens: cart.map((item) => ({
+        id_livro: item.id_livro,
+        quantidade: item.quantity,
+      })),
+    };
+  
+    // Exibe o JSON no console antes de enviar a requisição
+    console.log("JSON enviado para a finalização da compra:", JSON.stringify(requestBody));
+  
+    try {
+      const response = await fetch(
+        "http://localhost:3000/api/vendas/finalizar-compra",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(requestBody),
+        }
+      );
+  
+      if (response.ok) {
+        alert("Compra finalizada com sucesso!");
+        localStorage.removeItem("cart");
+        setCart([]);
+      } else {
+        const errorData = await response.json();
+        alert(
+          `Erro ao finalizar a compra: ${
+            errorData.message || "Erro desconhecido Front"
+          }`
+        );
+      }
+    } catch (error) {
+      console.error("Erro ao finalizar a compra:", error);
+      alert("Erro ao processar a compra. Tente novamente.");
+    }
+  };
+  
+  
 
   // Calcula o total do carrinho
   const calculateTotal = () => {
@@ -143,7 +196,9 @@ const Carrinho = () => {
               <h3>Total: {calculateTotal().toFixed(2)}$</h3>
             </div>
 
-            <button>Finalizar Compra</button>
+            <button className="button finalizarButton" onClick={finalizarCompra}>
+              Finalizar Compra
+            </button>
           </>
         ) : (
           <p>Carrinho vazio.</p>

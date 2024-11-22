@@ -4,46 +4,68 @@ const ItemVenda = db.ItemVenda;
 const Livro = db.Livro; // Supondo que você tenha um modelo Livro para o estoque
 
 const finalizarCompra = async (req, res) => {
-  const { itens } = req.body; // Itens será um array de objetos { id_livro, quantidade, preco }
+  // Recupera os itens e o userId do corpo da requisição
+  const { itens, userId } = req.body; // Recebe o userId diretamente do corpo da requisição
 
-  const userId = req.userId; // Recupera o id do usuário, assumindo que está autenticado
-
-  if (!numeroCelular || !itens || itens.length === 0) {
-    return res.status(400).json({ message: "Preencha todos os dados corretamente" });
+  // Validação dos dados
+  if (!itens || itens.length === 0) {
+    return res.status(400).json({
+      message: "Itens ausentes. O carrinho de compras está vazio.",
+    });
+  }
+  if (!userId) {
+    return res.status(400).json({
+      message: "Usuário não autenticado. Você precisa estar logado para finalizar a compra.",
+    });
   }
 
-  const transaction = await db.sequelize.transaction(); // Inicia uma transação para garantir que tudo ou nada seja realizado
+  // Valida cada item no carrinho
+  for (const item of itens) {
+    if (!item.id_livro || !item.quantidade) {
+      return res.status(400).json({
+        message: "Dados incompletos para um ou mais itens. Verifique os detalhes do carrinho.",
+      });
+    }
+  }
+
+  // Inicia a transação no banco de dados
+  const transaction = await db.sequelize.transaction();
 
   try {
-    // 1. Criar a venda
+    // 1. Criar a venda com id_user
     const venda = await Venda.create(
       {
-        id_user: userId,
+        id_user: userId, // Agora inclui o id_user
         data: new Date(),
       },
       { transaction }
     );
 
-    // 2. Criar os itens da venda e atualizar o estoque
+    // 2. Processar os itens no carrinho
     for (const item of itens) {
       const livro = await Livro.findByPk(item.id_livro, { transaction });
 
-      if (!livro || livro.quantidade < item.quantidade) {
-        throw new Error(`Estoque insuficiente para o livro ${livro.titulo}`);
+      if (!livro) {
+        throw new Error(`Livro com ID ${item.id_livro} não encontrado.`);
       }
 
-      // 2.1. Criar o item de venda
+      if (livro.quantidade < item.quantidade) {
+        throw new Error(
+          `Estoque insuficiente para o livro ${livro.titulo}. Disponível: ${livro.quantidade}, Solicitado: ${item.quantidade}`
+        );
+      }
+
+      // Criar o item da venda
       await ItemVenda.create(
         {
           id_venda: venda.id_venda,
           id_livro: item.id_livro,
           quantidade: item.quantidade,
-          preco: item.preco,
         },
         { transaction }
       );
 
-      // 2.2. Atualizar o estoque do livro
+      // Atualizar estoque do livro
       await Livro.update(
         { quantidade: livro.quantidade - item.quantidade },
         { where: { id_livro: item.id_livro }, transaction }
@@ -52,16 +74,14 @@ const finalizarCompra = async (req, res) => {
 
     // 3. Confirmar a transação
     await transaction.commit();
-
     res.status(201).json({ message: "Compra finalizada com sucesso!" });
   } catch (error) {
-    // Se algo der errado, desfaz tudo o que foi feito na transação
+    // Se ocorrer um erro, desfaz a transação
     await transaction.rollback();
-    res.status(500).json({ error: error.message });
+    console.error("Erro ao finalizar compra:", error.message);
+    res.status(500).json({ message: error.message });
   }
 };
-
-
 
 const createVenda = async (req, res) => {
   try {
