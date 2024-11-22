@@ -17,7 +17,7 @@ const BookForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch('http://localhost:3005/api/categorias');
+        const response = await fetch('http://localhost:3000/api/categorias');
         if (!response.ok) {
           throw new Error('Erro ao carregar categorias');
         }
@@ -51,7 +51,7 @@ const BookForm = () => {
 
     // Enviar os dados para a API
     try {
-      const response = await fetch('http://localhost:3005/api/books', {
+      const response = await fetch('http://localhost:3000/api/books', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
