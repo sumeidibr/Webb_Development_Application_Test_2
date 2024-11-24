@@ -80,11 +80,14 @@ const BookForm = () => {
   };
 
   return (
+    
+    
     <form className="book-form" onSubmit={handleSubmit}>
+  
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
 <div>
-    
+  
         <input
           type="text"
           name="titulo"
@@ -137,17 +140,16 @@ const BookForm = () => {
           </option>
         ))}
       </select>
+
 </div>
-
-
 <div className='intro'>
-        <p>Seja bem vindo ao paineil do admin</p>
-        <button type="submit">Salvar</button>
+<h2>Seja bem vindo ao painel Admin</h2>
+<button type="submit">Salvar</button>
 </div>
-    
-     
 
+      {/* Campo para selecionar a Categoria */}
      
+      
     </form>
   );
 };
