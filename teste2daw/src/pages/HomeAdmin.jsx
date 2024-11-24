@@ -81,11 +81,10 @@ const BookForm = () => {
 
   return (
     <form className="book-form" onSubmit={handleSubmit}>
-      <h2>Adicionar Livro</h2>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage && <p style={{ color: 'green' }}>{successMessage}</p>}
 <div>
-  
+    
         <input
           type="text"
           name="titulo"
@@ -125,10 +124,7 @@ const BookForm = () => {
           placeholder="Quantidade"
           required
         />
-</div>
-
-      {/* Campo para selecionar a Categoria */}
-      <select
+         <select
         name="categoria_id"
         value={bookData.categoria_id}
         onChange={handleChange}
@@ -141,8 +137,17 @@ const BookForm = () => {
           </option>
         ))}
       </select>
+</div>
 
-      <button type="submit">Salvar</button>
+
+<div className='intro'>
+        <p>Seja bem vindo ao paineil do admin</p>
+        <button type="submit">Salvar</button>
+</div>
+    
+     
+
+     
     </form>
   );
 };

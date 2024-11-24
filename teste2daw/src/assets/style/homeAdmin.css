@@ -5,7 +5,8 @@
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
-    margin-top: 40px;
+    margin-top: 90px;
+    display: flex;
   }
 
   .book-form div{
@@ -21,19 +22,23 @@
   
   .book-form input,
   .book-form textarea {
-    width: 100%;
+    width: 70%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
+    border: 1px solid #22e71b;
+    border-top: 0;
+    background-color: black;
+    border-left: none;
+    border-right: none;
     border-radius: 4px;
     font-size: 16px;
     background-color: white;
   }
   
   .book-form button {
-    width: 100%;
-    padding: 30px;
-    background-color: #007bff;
+    width: 30%;
+    padding: 10px;
+    background-color: #1daa34;
     color: #fff;
     border: none;
     border-radius: 4px;

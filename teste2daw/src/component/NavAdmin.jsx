@@ -19,11 +19,7 @@ const Navbar = () => {
     <nav>
       <div className="wrapper">
         <div className="logo">
-          <Link to="/">
-            <span style={{ color: 'rgb(7, 79, 37)', fontWeight: 'bold', fontSize: '25pt' }}>
-              Dondzissa<sup style={{ fontSize: '0.5rem' }}>TM</sup>
-            </span>
-          </Link>
+      
         </div>
 
         <div className="Componentes_2">
