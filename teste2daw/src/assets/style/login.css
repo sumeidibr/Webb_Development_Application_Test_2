@@ -16,25 +16,60 @@ html, body {
     justify-content: center;
     align-items: center; /* Define a altura total da tela */
     width: 100vw;
-    background-color: #ffffff; /* Cor de fundo opcional */
+    background-color: #000000; /* Cor de fundo opcional */
  
 }
 
 .form {
     width: 60%; /* Ocupará 60% da largura da tela */
     display: flex;
+    height: 90%;
     justify-content: space-around;
     align-items: center; /* Centraliza verticalmente */
-    background-color: rgb(217, 215, 215);
+    background-color: rgb(255, 255, 255);
     border-radius: 8px;
     margin: auto;
     padding: 50px;
 }
 
 .login_area, .sign_in_area {
-    width: 45%;
+  
     padding: 20px;
     transition: ease-in 0.5s;
+}
+
+.sign_in_area{
+    display: none;
+}
+
+.login_area{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
+  border-radius: 20px;
+
+}
+
+.logar{
+    
+    padding: 10px;
+height: 60%;
+width: 100%;
+}
+
+.design{
+padding: 10px;
+
+height: 50%;
+width: 100%;
+display: flex;
+align-items: center;
+justify-items: center;
+margin: auto;
+flex-direction: column;
 }
 
 #email, #password, #name {
@@ -109,7 +144,7 @@ html, body {
 }
 
 .sign_in_area {
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-items: center;
@@ -121,6 +156,7 @@ html, body {
     align-items: center;
     justify-items: center;
     width: 100%;
+    background: red;
 }
 
 .registro_condicao{

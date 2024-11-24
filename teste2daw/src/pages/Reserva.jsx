@@ -8,7 +8,7 @@ const Reserva = () => {
   // Função para buscar reservas do usuário
   const fetchReservas = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/reservas/user/${userId}`);
+      const response = await fetch(`http://localhost:3005/api/reservas/user/${userId}`);
       if (response.ok) {
         const data = await response.json();
         setReservas(data);
@@ -25,7 +25,7 @@ const Reserva = () => {
   const handleCancelarReserva = async (idReserva) => {
     try {
       const response = await fetch(
-        `http://localhost:3000/api/reservas/${idReserva}`, // Usando o id_reserva para deletar
+        `http://localhost:3005/api/reservas/${idReserva}`, // Usando o id_reserva para deletar
         {
           method: "DELETE",
         }

@@ -44,7 +44,7 @@ const Carrinho = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/reservas", {
+      const response = await fetch("http://localhost:3005/api/reservas", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -130,7 +130,7 @@ const Carrinho = () => {
                           className="button"
                           onClick={() => handleReservar(product)}
                         >
-                          Reservar
+                         Alugar Livro
                         </button>
                       </div>
                     </div>
@@ -143,7 +143,7 @@ const Carrinho = () => {
               <h3>Total: {calculateTotal().toFixed(2)}$</h3>
             </div>
 
-            <button>Finalizar Compra</button>
+            <button></button>
           </>
         ) : (
           <p>Carrinho vazio.</p>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../assets/style/login.css';
+import logo from "../assets/img/transferir.jpg";
+import Colecao from "../assets/img/transferir.png";
+
 
 const LoginRegister = () => {
   const [showRegister, setShowRegister] = useState(false);
@@ -35,7 +38,7 @@ const handleLogin = async (e) => {
   const loginData = { email, password };
 
   try {
-    const response = await fetch('http://localhost:3000/api/users/Entrar', {
+    const response = await fetch('http://localhost:3005/api/users/Entrar', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(loginData),
@@ -91,7 +94,7 @@ const handleLogin = async (e) => {
     const registerData = { name, email, password };
 
     try {
-      const response = await fetch('http://localhost:3000/api/users', {
+      const response = await fetch('http://localhost:3005/api/users', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(registerData),
@@ -120,47 +123,51 @@ const handleLogin = async (e) => {
       <div className="form">
         {/* Área de Login */}
         <div className="login_area">
-          <p style={{ fontSize: '1.4rem', color: 'white;' }}>
-            <b>Login into your account</b>
-          </p>
-          <input
-            type="email"
-            name="email"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            placeholder="Digite o seu e-mail..."
-          />
-
-          <input
-            type="password"
-            name="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Digite a sua palavra-passe..."
-          />
-
-          {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
-
-          <div className="caixas">
-            <div>
-              <input
-                type="submit"
-                name="submit"
-                value="Logar"
-                id="btn_logar"
-                onClick={handleLogin}
-              />
-            </div>
-            <a href="/" style={{ color: 'rgb(14, 54, 54)' }}>
-              <p>Esqueceu sua senha?</p>
-            </a>
-            <div>
-              <p style={{ cursor: 'pointer', color: 'rgb(0, 0, 0)' }} onClick={handleRegisterClick}>
-                Criar uma nova conta
-              </p>
+          <div className='design'>
+          <img src="/teste2daw/public/transferir.jpg" alt="Logo" />
+          <br /><br />
+            <p>Mergulhe em um mundo cheio de conhecimento esperando você. Conheça a nossa Biblioteca famosa pelos seus best-sellers que provém de toda parte do mundo.</p>
+          </div>
+          <div className='logar'>
+            <p style={{ fontSize: '1.4rem', color: 'aqua;', fontWeight: 'bold' }}>
+              Faça já o Login
+            </p>
+            <input
+              type="email"
+              name="email"
+              id="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="Digite o seu e-mail..."
+            />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Digite a sua palavra-passe..."
+            />
+            {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
+            <div className="caixas">
+              <div>
+                <input
+                  type="submit"
+                  name="submit"
+                  value="Logar"
+                  id="btn_logar"
+                  onClick={handleLogin}
+                />
+              </div>
+              <a href="/" style={{ color: 'rgb(14, 54, 54)' }}>
+                <p>Esqueceu sua senha?</p>
+              </a>
+              <div>
+                <p style={{ cursor: 'pointer', color: 'rgb(0, 0, 0)' }} onClick={handleRegisterClick}>
+                  Criar uma nova conta
+                </p>
+              </div>
             </div>
           </div>
         </div>

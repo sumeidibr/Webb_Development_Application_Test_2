@@ -12,7 +12,7 @@ const Detalhes = () => {
   useEffect(() => {
     const fetchLivro = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/books/${id}`);
+        const response = await fetch(`http://localhost:3005/api/books/${id}`);
         if (!response.ok) {
           throw new Error("Erro ao carregar os detalhes do livro");
         }
@@ -64,7 +64,7 @@ const Detalhes = () => {
     }
 
     try {
-      const response = await fetch("http://localhost:3000/api/favoritos", {
+      const response = await fetch("http://localhost:3005/api/favoritos", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -98,7 +98,7 @@ const Detalhes = () => {
 
     try {
       const response = await fetch(
-        `http://localhost:3000/api/favoritos/${userId}/${livro.id_livro}`,
+        `http://localhost:3005/api/favoritos/${userId}/${livro.id_livro}`,
         {
           method: "DELETE",
         }
@@ -133,7 +133,7 @@ const Detalhes = () => {
           <div className="col-esquerda">
             <div className="imagem-principal">
               <img
-                src={livro.imagem || "default-image.jpg"} // Imagem do livro ou padrão
+                src={livro.imagem || "../assets/img/transferir.jpg"} // Imagem do livro ou padrão
                 alt={livro.titulo}
               />
             </div>
@@ -141,31 +141,35 @@ const Detalhes = () => {
 
           {/* Coluna direita: Detalhes do livro */}
           <div className="col-direita">
-            <h1>{livro.titulo}</h1>
             <div className="informacao-tamanho">
+            <p> <strong>Titulo:</strong>{livro.titulo}</p>
               <p><strong>Autor:</strong> {livro.autor}</p>
-              <p><strong>Preço:</strong> {livro.preco} $</p>
+              <p><strong>Preço:</strong> {livro.preco} Mzn</p>
               <p><strong>Quantidade disponível:</strong> {livro.quantidade}</p>
               <p><strong>Categoria:</strong> {livro.categoria_nome}</p>
+              <h4>Descrição:</h4>
+              <p>{livro.descricao || "Livro direcionado para quem deseja enriquecer."}</p>
             </div>
-            <h4>Descrição:</h4>
-            <p>{livro.descricao || "Descrição não disponível."}</p>
-            <button
-              style={styles.button}
-              onClick={() => addToCart(livro)}
-            >
-              Adicionar ao Carrinho
-            </button>
-            <Link to="/carrinho">
-              <button style={styles.buttonSecondary}>Ir para o Carrinho</button>
-            </Link>
-            {/* Botões de favoritos */}
-            <button style={styles.buttonSecondary} onClick={addToFavorites}>
-              Adicionar Favorito
-            </button>
-            <button style={styles.buttonSecondary} onClick={removeFromFavorites}>
-              Remover Favorito
-            </button>
+           
+            <div className="botoes">
+              
+              <button className="btnn"
+                style={styles.button}
+                onClick={() => addToCart(livro)}
+              >
+                Adicionar ao Carrinho
+              </button>
+              <Link to="/carrinho">
+                <button className="btnn" style={styles.buttonSecondary}>Ir para o Carrinho</button>
+              </Link>
+              {/* Botões de favoritos 
+              <button className="btnn" style={styles.buttonSecondary} onClick={addToFavorites}>
+                Adicionar Favorito
+              </button>
+              <button className="btnn" style={styles.buttonSecondary} onClick={removeFromFavorites}>
+                Remover Favorito
+              </button>*/}
+            </div>
           </div>
         </div>
       </section>

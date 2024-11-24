@@ -12,7 +12,7 @@ const Home = () => {
   useEffect(() => {
     const fetchLivros = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/books");
+        const response = await fetch("http://localhost:3005/api/books");
         if (!response.ok) {
           throw new Error("Erro ao carregar livros");
         }
@@ -25,7 +25,7 @@ const Home = () => {
 
     const fetchCategorias = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/categorias");
+        const response = await fetch("http://localhost:3005/api/categorias");
         if (!response.ok) {
           throw new Error("Erro ao carregar categorias");
         }
@@ -82,29 +82,14 @@ const Home = () => {
             </select>
           </div>
 
-          {/* Section 2 */}
-          <div className="Advantages-Container">
-            <div className="Discount">
-              <p>Descontos todas semanas</p>
-            </div>
-            <div>
-              <p>Suporte 24/7 dias</p>
-            </div>
-            <div>
-              <p>Entrega ao domicílio</p>
-            </div>
-            <div>
-              <p>Pagamento seguro</p>
-            </div>
-          </div>
-
+         
           {/* Exibição dos livros com base na categoria selecionada */}
           <div className="shop-container">
             {livrosFiltrados.length > 0 ? (
               livrosFiltrados.map((livro) => (
                 <Link to={`/detalhes/${livro.id_livro}`} key={livro.id_livro}>
                   <div className="box">
-                    <img src="teste3-removebg-preview.png" alt={livro.titulo} />
+                    <img src="" alt={livro.titulo} />
                     <h2>{livro.titulo}</h2>
                     <h2>{livro.autor}</h2>
                     <span>{livro.preco} $</span>
